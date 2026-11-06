@@ -1,17 +1,24 @@
 ---
-import CodeSection from "@components/CodeSection.astro";
+import CompatibilitySection from "@components/CompatibilitySection.astro";
+import CtaSection from "@components/CtaSection.astro";
+import DemoSection from "@components/DemoSection.astro";
+import FaqSection from "@components/FaqSection.astro";
 import FeaturesSection from "@components/FeaturesSection.astro";
-import HomeSection from "@components/HomeSection.astro";
+import HeroSection from "@components/HeroSection.astro";
 import PricingSection from "@components/PricingSection.astro";
+import ReviewsSection from "@components/ReviewsSection.astro";
+import WorkflowSection from "@components/WorkflowSection.astro";
 import Layout from "@layouts/Layout.astro";
-
-import "prismjs/components/prism-java.js";
-import "prismjs/themes/prism-tomorrow.css";
 ---
 
 <Layout>
-  <HomeSection />
+  <HeroSection />
+  <WorkflowSection />
   <FeaturesSection />
-  <CodeSection />
+  <DemoSection />
+  <CompatibilitySection />
+  <ReviewsSection />
   <PricingSection />
+  <FaqSection />
+  <CtaSection />
 </Layout>

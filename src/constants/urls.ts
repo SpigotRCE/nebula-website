@@ -13,11 +13,6 @@ export type Sample = {
 
 export const samples: Sample[] = [
   {
-    name: "CrackME",
-    protectedUrl: "https://cdn.spigotrce.xyz/files/nebula-crackme-out.jar",
-    info: "A crack me jar to test the strength of Nebula.",
-  },
-  {
     name: "SnakeGame",
     originalUrl: "https://cdn.spigotrce.xyz/files/nebula-snake_game-original.jar",
     protectedUrl: "https://cdn.spigotrce.xyz/files/nebula-snake_game-out.jar",

@@ -1,7 +1,7 @@
 ---
 import JavaCodeCard from "./cards/JavaCodeCard.astro";
 import { samples } from "@constants/urls";
-import { originalCode, obfuscatedCode } from "@constants/javaCode";
+import { originalCode, obfuscatedCode, virtualizedCode  } from "@constants/javaCode";
 ---
 
 <section class="code-section website-section" id="demo">
@@ -16,6 +16,7 @@ import { originalCode, obfuscatedCode } from "@constants/javaCode";
   <div class="code-cards-container">
     <JavaCodeCard title="Original Code" code={originalCode} />
     <JavaCodeCard title="Obfuscated Code" code={obfuscatedCode} />
+    <JavaCodeCard title="Virtualized Code" code={virtualizedCode} />
   </div>
 
   <div class="download-panel animate-fade-slide-up">
@@ -117,7 +118,7 @@ import { originalCode, obfuscatedCode } from "@constants/javaCode";
   .code-cards-container {
     display: grid;
     justify-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
     gap: 1.75rem;
     width: 100%;
     max-width: 1400px;

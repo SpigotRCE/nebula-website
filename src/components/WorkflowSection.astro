@@ -1,0 +1,523 @@
+---
+import Icon from "@icons/Icon.astro";
+
+const steps = [
+  {
+    title: "Drop in your JAR",
+    text: "Upload a plugin or application build straight to the Nebula dashboard.",
+  },
+  {
+    title: "Pick your layers",
+    text: "Start from a preset or tune every obfuscation pass to fit your project.",
+  },
+  {
+    title: "Ship the protected build",
+    text: "Download the output and deploy it exactly the way you already do.",
+  },
+];
+
+const layers = [
+  "Name obfuscation",
+  "String encryption",
+  "Control-flow flattening",
+  "VM protection",
+];
+---
+
+<section class="section workflow" id="how-it-works">
+  <div class="workflow-grid">
+    <div class="workflow-copy">
+      <span class="eyebrow">How it works</span>
+      <h2 class="section-title">From source to cipher, in three moves.</h2>
+      <p class="section-sub workflow-sub">
+        No new build system. No launcher changes. Nebula fits into the workflow
+        you already have — then makes the output a lot harder to read.
+      </p>
+
+      <ol class="steps">
+        {
+          steps.map((step, index) => (
+            <li class="step">
+              <span class="step-number">{String(index + 1).padStart(2, "0")}</span>
+              <div class="step-copy">
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <a class="btn btn-ghost workflow-cta" href="#demo">
+        See the output
+        <Icon name="arrow-right" size={15} />
+      </a>
+    </div>
+
+    <div class="build-wrap">
+      <div class="build-card">
+        <div class="build-head">
+          <span class="build-dots" aria-hidden="true">
+            <i></i><i></i><i></i>
+          </span>
+          <span class="build-title">
+            <Icon name="terminal" size={14} />
+            nebula build
+          </span>
+          <span class="build-live">ready</span>
+        </div>
+
+        <div class="build-body">
+          <div class="build-meta">
+            <div>
+              <span>Input</span>
+              <strong>my-plugin.jar</strong>
+            </div>
+            <div>
+              <span>Preset</span>
+              <strong>Maximum</strong>
+            </div>
+          </div>
+
+          <ul class="build-layers">
+            {
+              layers.map((layer) => (
+                <li>
+                  <span class="layer-check">
+                    <Icon name="check" size={12} />
+                  </span>
+                  <span>{layer}</span>
+                  <em>on</em>
+                </li>
+              ))
+            }
+          </ul>
+
+          <div class="build-progress" aria-hidden="true">
+            <span></span>
+          </div>
+
+          <div class="build-result">
+            <span class="result-icon">
+              <Icon name="package" size={18} />
+            </span>
+            <div class="result-copy">
+              <strong>my-plugin-protected.jar</strong>
+              <small>Build complete · ready to deploy</small>
+            </div>
+            <Icon name="download" size={17} />
+          </div>
+        </div>
+      </div>
+
+      <div class="float-chip float-chip-a">
+        <Icon name="shield" size={14} />
+        19 layers applied
+      </div>
+      <div class="float-chip float-chip-b">
+        <Icon name="zap" size={14} />
+        Hierarchy intact
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .workflow {
+    padding-top: 40px;
+  }
+
+  .workflow-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.02fr;
+    align-items: center;
+    gap: 72px;
+  }
+
+  .workflow-copy {
+    max-width: 520px;
+  }
+
+  .workflow-sub {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 34px;
+  }
+
+  .step {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    padding-bottom: 24px;
+  }
+
+  .step:last-child {
+    padding-bottom: 0;
+  }
+
+  .step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 38px;
+    left: 17px;
+    bottom: 4px;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      rgba(167, 139, 250, 0.3),
+      rgba(167, 139, 250, 0.06)
+    );
+  }
+
+  .step-number {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid rgba(167, 139, 250, 0.24);
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--accent-bright);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .step-copy h3 {
+    margin-top: 4px;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .step-copy p {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+
+  .workflow-cta {
+    margin-top: 30px;
+  }
+
+  .build-wrap {
+    position: relative;
+  }
+
+  .build-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 8% 4% -12%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse,
+      rgba(139, 92, 246, 0.24),
+      transparent 68%
+    );
+    filter: blur(48px);
+  }
+
+  .build-card {
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-soft);
+    background: linear-gradient(
+      165deg,
+      rgba(27, 18, 46, 0.9),
+      rgba(10, 7, 18, 0.96)
+    );
+    box-shadow:
+      0 40px 90px -40px rgba(0, 0, 0, 0.9),
+      0 0 0 1px rgba(255, 255, 255, 0.02),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .build-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .build-dots {
+    display: flex;
+    gap: 5px;
+  }
+
+  .build-dots i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(196, 181, 253, 0.28);
+  }
+
+  .build-dots i:nth-child(2) {
+    background: rgba(232, 121, 249, 0.42);
+  }
+
+  .build-dots i:nth-child(3) {
+    background: rgba(139, 92, 246, 0.5);
+  }
+
+  .build-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+  }
+
+  .build-live {
+    margin-left: auto;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid rgba(74, 222, 128, 0.24);
+    background: rgba(74, 222, 128, 0.08);
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .build-body {
+    padding: 22px;
+  }
+
+  .build-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .build-meta > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.018);
+  }
+
+  .build-meta span {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .build-meta strong {
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-weight: 500;
+  }
+
+  .build-layers {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-top: 14px;
+    padding: 7px;
+    border-radius: 14px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.018);
+  }
+
+  .build-layers li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 9px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 11.5px;
+  }
+
+  .build-layers li:hover {
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .layer-check {
+    display: grid;
+    place-items: center;
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--green-dim);
+    border: 1px solid rgba(74, 222, 128, 0.24);
+    color: var(--green);
+  }
+
+  .build-layers em {
+    margin-left: auto;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-style: normal;
+    letter-spacing: 0.06em;
+  }
+
+  .build-progress {
+    height: 4px;
+    margin-top: 18px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .build-progress span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #7c3aed, #a855f7, #e879f9, #7c3aed);
+    background-size: 220% 100%;
+    animation: progress-shimmer 3.6s linear infinite;
+  }
+
+  @keyframes progress-shimmer {
+    to {
+      background-position: -220% 0;
+    }
+  }
+
+  .build-result {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-top: 18px;
+    padding: 13px 14px;
+    border-radius: 13px;
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    background: rgba(74, 222, 128, 0.055);
+    color: var(--green);
+  }
+
+  .result-icon {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.18);
+  }
+
+  .result-copy {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .result-copy strong {
+    overflow: hidden;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .result-copy small {
+    color: var(--text-muted);
+    font-size: 9.5px;
+  }
+
+  .build-result > :global(svg) {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--green);
+    opacity: 0.8;
+  }
+
+  .float-chip {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 13px;
+    border-radius: 11px;
+    border: 1px solid var(--border-soft);
+    background: rgba(20, 14, 33, 0.92);
+    box-shadow: var(--shadow-raised);
+    color: var(--text-secondary);
+    font-size: 10.5px;
+    font-weight: 500;
+    backdrop-filter: blur(14px);
+    animation: chip-float 6s ease-in-out infinite;
+  }
+
+  .float-chip :global(svg) {
+    color: var(--accent-bright);
+  }
+
+  .float-chip-a {
+    top: -18px;
+    right: -18px;
+  }
+
+  .float-chip-b {
+    bottom: 36px;
+    left: -26px;
+    animation-delay: -3s;
+  }
+
+  @keyframes chip-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-7px);
+    }
+  }
+
+  @media (max-width: 980px) {
+    .workflow-grid {
+      grid-template-columns: 1fr;
+      gap: 56px;
+    }
+
+    .workflow-copy {
+      max-width: 640px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .build-body {
+      padding: 16px;
+    }
+
+    .build-meta {
+      grid-template-columns: 1fr;
+    }
+
+    .float-chip {
+      display: none;
+    }
+
+    .build-result {
+      padding: 12px;
+    }
+  }
+</style>

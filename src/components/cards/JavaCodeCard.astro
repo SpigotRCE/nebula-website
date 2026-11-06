@@ -17,7 +17,7 @@ const highlightedCode = Prism.highlight(code, Prism.languages.java, "java");
 <style>
   .card {
     width: 100%;
-    max-width: 760px;
+    max-width: 820px;
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
@@ -58,14 +58,18 @@ const highlightedCode = Prism.highlight(code, Prism.languages.java, "java");
     border-radius: var(--radius-md);
     border: 1px solid var(--border-subtle);
     overflow-x: auto;
+    overflow-y: auto;
     flex: 1;
     text-align: start;
     min-height: 320px;
     max-height: 65vh;
     font-family: "SF Mono", Menlo, Consolas, monospace;
-    font-size: clamp(0.8rem, 1.6vw, 1rem);
+    font-size: clamp(0.85rem, 1.1vw, 1.05rem);
     line-height: 1.7;
     box-sizing: border-box;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
     scrollbar-width: thin;
     scrollbar-color: rgba(99, 102, 241, 0.5) rgba(255, 255, 255, 0.04);
   }

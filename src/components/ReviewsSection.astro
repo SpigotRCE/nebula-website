@@ -1,0 +1,224 @@
+---
+const reviews = [
+  {
+    name: "gaganalk",
+    avatar: "https://cdn.spigotrce.xyz/files/avatar-gaganalk.png",
+    quote:
+      "So, I've been using Nebula since the beta, and honestly? This obfuscator is a flex 😭 Obviously one of the best out there right now.",
+  },
+  {
+    name: "Nightmary",
+    avatar: "https://cdn.spigotrce.xyz/files/avatar-nightmary1.png",
+    quote:
+      "I've been using Nebula for 20 days now, and it's worth the price. The support is awesome, and it also crashes all three decompilers built into Recaf.",
+  },
+  {
+    name: "Het.dev",
+    avatar: "https://cdn.spigotrce.xyz/files/avatar-hetgamer528.png",
+    quote:
+      "I've been using Nebula Obfuscator for five days now. Cheap rates and really good support — overall, I love it. You guys should give it a try.",
+  },
+];
+---
+
+<section class="section reviews" id="reviews">
+  <div class="section-head animate-fade-slide-up">
+    <span class="eyebrow">Reviews</span>
+    <h2 class="section-title">Trusted by people who ship.</h2>
+    <p class="section-sub">
+      Real feedback from developers who have put Nebula through real builds.
+    </p>
+  </div>
+
+  <div class="review-grid">
+    {
+      reviews.map((review) => (
+        <figure class="review-card">
+          <span class="review-mark" aria-hidden="true">
+            &ldquo;
+          </span>
+
+          <blockquote>{review.quote}</blockquote>
+
+          <figcaption class="review-author">
+            <img
+              class="review-avatar"
+              src={review.avatar}
+              alt={`${review.name} avatar`}
+              width="44"
+              height="44"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="review-name">
+              <strong>{review.name}</strong>
+              <small>Nebula user</small>
+            </span>
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+
+  <p class="reviews-note">
+    Reviews are lightly edited for spelling and clarity.
+  </p>
+</section>
+
+<style>
+  .reviews {
+    padding-top: 64px;
+  }
+
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .review-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 26px 24px 22px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    background: linear-gradient(
+      160deg,
+      rgba(32, 21, 54, 0.58),
+      rgba(13, 9, 23, 0.78)
+    );
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .review-card::after {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(168, 85, 247, 0.18),
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.24s ease;
+    pointer-events: none;
+  }
+
+  .review-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(167, 139, 250, 0.3);
+    background: linear-gradient(
+      160deg,
+      rgba(40, 26, 67, 0.66),
+      rgba(15, 10, 26, 0.82)
+    );
+  }
+
+  .review-card:hover::after {
+    opacity: 1;
+  }
+
+  .review-mark {
+    position: absolute;
+    top: 6px;
+    right: 20px;
+    color: var(--accent-soft);
+    font-family: var(--font-display);
+    font-size: 68px;
+    line-height: 1;
+    opacity: 0.16;
+    pointer-events: none;
+  }
+
+  .review-card blockquote {
+    position: relative;
+    z-index: 1;
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+
+  .review-author {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-top: auto;
+    padding-top: 22px;
+  }
+
+  .review-avatar {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(167, 139, 250, 0.28);
+    background: var(--accent-dim);
+    object-fit: cover;
+  }
+
+  .review-name {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+  }
+
+  .review-name strong {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .review-name small {
+    color: var(--text-muted);
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .reviews-note {
+    margin-top: 18px;
+    color: var(--text-muted);
+    font-size: 10.5px;
+    text-align: center;
+  }
+
+  @media (max-width: 940px) {
+    .review-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .review-card:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .review-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .review-card:last-child {
+      grid-column: auto;
+    }
+
+    .review-card {
+      padding: 22px 20px 20px;
+    }
+  }
+</style>

@@ -1,0 +1,588 @@
+---
+import logo from "@public/logo.webp";
+import { dashboardUrl, discordUrl } from "@constants/urls";
+import Icon from "@icons/Icon.astro";
+
+const resourceLinks = [
+  {
+    href: "#demo",
+    icon: "terminal",
+    title: "Live demo",
+    text: "Original vs. protected code",
+  },
+  {
+    href: "#samples",
+    icon: "download",
+    title: "Sample builds",
+    text: "Try protected JARs first",
+  },
+  {
+    href: "#compatibility",
+    icon: "server",
+    title: "Compatibility",
+    text: "Platforms and runtimes",
+  },
+  {
+    href: "#reviews",
+    icon: "chat",
+    title: "Reviews",
+    text: "What customers say",
+  },
+  {
+    href: "#faq",
+    icon: "book",
+    title: "FAQ",
+    text: "Answers to common questions",
+  },
+];
+---
+
+<header class="nav" id="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="#home" aria-label="Nebula home">
+      <span class="brand-mark">
+        <img src={logo.src} alt="" width="32" height="32" />
+      </span>
+      <span class="brand-text">Nebula<small>Obfuscator</small></span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      id="nav-toggle"
+      type="button"
+      aria-controls="nav-menu"
+      aria-expanded="false"
+      aria-label="Open menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-menu" id="nav-menu">
+      <ul class="nav-links">
+        <li><a class="nav-link" href="#features">Features</a></li>
+        <li class="has-dropdown">
+          <button
+            class="nav-link nav-drop-btn"
+            type="button"
+            data-dropdown-toggle
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            Resources
+            <Icon name="chevron-down" size={14} />
+          </button>
+          <div class="dropdown" data-dropdown>
+            {
+              resourceLinks.map((link) => (
+                <a class="drop-item" href={link.href}>
+                  <span class="drop-icon">
+                    <Icon name={link.icon} size={17} />
+                  </span>
+                  <span class="drop-copy">
+                    <strong>{link.title}</strong>
+                    <small>{link.text}</small>
+                  </span>
+                </a>
+              ))
+            }
+          </div>
+        </li>
+        <li><a class="nav-link" href="#pricing">Pricing</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a
+          class="nav-dash"
+          href={String(dashboardUrl)}
+          target="_blank"
+          rel="noopener noreferrer">Dashboard</a
+        >
+        <a
+          class="btn btn-primary nav-cta"
+          href={String(discordUrl)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Get started
+          <Icon name="arrow-right" size={15} />
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    border-bottom: 1px solid transparent;
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      backdrop-filter 0.25s ease;
+  }
+
+  .nav.is-scrolled,
+  .nav.is-menu-open {
+    background: rgba(8, 5, 15, 0.82);
+    border-bottom-color: var(--border-subtle);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    width: 100%;
+    max-width: 1240px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    flex-shrink: 0;
+    color: var(--text-primary);
+  }
+
+  .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: linear-gradient(
+      145deg,
+      rgba(139, 92, 246, 0.28),
+      rgba(217, 70, 239, 0.12)
+    );
+    border: 1px solid rgba(167, 139, 250, 0.28);
+    box-shadow: 0 8px 24px -10px rgba(139, 92, 246, 0.8);
+  }
+
+  .brand-mark img {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-display);
+    font-size: 1.14rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  .brand-text small {
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    flex: 1;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: auto;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 13px;
+    border-radius: 9px;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    font-weight: 500;
+    transition:
+      color 0.18s ease,
+      background 0.18s ease;
+  }
+
+  .nav-link:hover,
+  .has-dropdown.open > .nav-drop-btn {
+    color: var(--text-primary);
+    background: var(--bg-hover);
+  }
+
+  .nav-drop-btn :global(svg) {
+    transition: transform 0.2s ease;
+    color: var(--text-muted);
+  }
+
+  .has-dropdown:hover > .nav-drop-btn :global(svg),
+  .has-dropdown.open > .nav-drop-btn :global(svg) {
+    transform: rotate(180deg);
+    color: var(--accent-bright);
+  }
+
+  .has-dropdown {
+    position: relative;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    width: 282px;
+    padding: 8px;
+    border-radius: 16px;
+    background: rgba(17, 11, 28, 0.97);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-raised);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -6px);
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease,
+      visibility 0.18s ease;
+  }
+
+  .has-dropdown:hover > .dropdown,
+  .has-dropdown:focus-within > .dropdown,
+  .has-dropdown.open > .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+  }
+
+  .drop-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 10px;
+    border-radius: 11px;
+    transition: background 0.16s ease;
+  }
+
+  .drop-item:hover {
+    background: var(--bg-hover);
+  }
+
+  .drop-icon {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(167, 139, 250, 0.18);
+    color: var(--accent-bright);
+  }
+
+  .drop-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .drop-copy strong {
+    color: var(--text-primary);
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  .drop-copy small {
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .nav-dash {
+    padding: 9px 14px;
+    border-radius: 9px;
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    font-weight: 500;
+    transition:
+      color 0.18s ease,
+      background 0.18s ease;
+  }
+
+  .nav-dash:hover {
+    color: var(--text-primary);
+    background: var(--bg-hover);
+  }
+
+  .nav-cta {
+    padding: 10px 18px;
+    font-size: 13.5px;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    margin-left: auto;
+    border-radius: 10px;
+    border: 1px solid var(--border-soft);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 18px;
+    height: 1.8px;
+    margin: 0 auto;
+    border-radius: 2px;
+    background: var(--text-secondary);
+    transition:
+      transform 0.22s ease,
+      opacity 0.22s ease;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(6.8px) rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-6.8px) rotate(-45deg);
+  }
+
+  @media (max-width: 900px) {
+    .nav-inner {
+      gap: 16px;
+      padding: 0 18px;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      height: calc(100dvh - var(--nav-height));
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      padding: 18px;
+      overflow-y: auto;
+      background: rgba(8, 5, 15, 0.98);
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition:
+        opacity 0.22s ease,
+        transform 0.22s ease,
+        visibility 0.22s ease;
+    }
+
+    .nav-menu.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .nav-links {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 4px;
+      margin-left: 0;
+    }
+
+    .nav-link {
+      width: 100%;
+      justify-content: space-between;
+      padding: 14px 14px;
+      font-size: 15px;
+    }
+
+    .has-dropdown {
+      position: static;
+    }
+
+    .dropdown {
+      position: static;
+      width: 100%;
+      max-height: 0;
+      padding: 0 8px;
+      overflow: hidden;
+      opacity: 1;
+      visibility: hidden;
+      transform: none;
+      border: 1px solid transparent;
+      box-shadow: none;
+      background: transparent;
+      transition:
+        max-height 0.28s ease,
+        padding 0.28s ease,
+        border-color 0.28s ease,
+        visibility 0.28s ease;
+    }
+
+    .has-dropdown:hover > .dropdown,
+    .has-dropdown:focus-within > .dropdown {
+      opacity: 1;
+      visibility: hidden;
+      transform: none;
+    }
+
+    .has-dropdown.open > .dropdown {
+      max-height: 360px;
+      padding: 8px;
+      visibility: visible;
+      border-color: var(--border-subtle);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .nav-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .nav-dash {
+      text-align: center;
+      padding: 13px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .nav-cta {
+      width: 100%;
+      padding: 14px;
+      font-size: 14.5px;
+    }
+  }
+
+  :global(body.nav-open) {
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  const nav = document.getElementById("site-nav");
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("nav-menu");
+  const dropdownToggles = Array.from(
+    document.querySelectorAll<HTMLButtonElement>("[data-dropdown-toggle]"),
+  );
+
+  const setMenu = (open: boolean): void => {
+    if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) {
+      return;
+    }
+
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    menu.classList.toggle("is-open", open);
+    nav?.classList.toggle("is-menu-open", open);
+    document.body.classList.toggle("nav-open", open);
+  };
+
+  const closeDropdowns = (): void => {
+    dropdownToggles.forEach((button) => {
+      button.setAttribute("aria-expanded", "false");
+      button.closest(".has-dropdown")?.classList.remove("open");
+    });
+  };
+
+  toggle?.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") !== "true";
+    setMenu(open);
+    if (!open) closeDropdowns();
+  });
+
+  dropdownToggles.forEach((button) => {
+    button.addEventListener("click", () => {
+      const parent = button.closest(".has-dropdown");
+      const open = !parent?.classList.contains("open");
+      closeDropdowns();
+      parent?.classList.toggle("open", open);
+      button.setAttribute("aria-expanded", String(open));
+    });
+  });
+
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      setMenu(false);
+      closeDropdowns();
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    if (!target.closest(".has-dropdown")) closeDropdowns();
+
+    if (
+      nav instanceof HTMLElement &&
+      !nav.contains(target) &&
+      menu?.classList.contains("is-open")
+    ) {
+      setMenu(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setMenu(false);
+      closeDropdowns();
+    }
+  });
+
+  const onScroll = (): void => {
+    nav?.classList.toggle("is-scrolled", window.scrollY > 12);
+  };
+
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 900 && menu?.classList.contains("is-open")) {
+      setMenu(false);
+      closeDropdowns();
+    }
+  });
+</script>

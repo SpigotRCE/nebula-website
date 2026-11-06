@@ -1,0 +1,218 @@
+---
+import Icon from "@icons/Icon.astro";
+import { discordUrl } from "@constants/urls";
+
+const faqs = [
+  {
+    question: "Which platforms does Nebula support?",
+    answer:
+      "Paper, Spigot, Purpur, BungeeCord and Velocity are supported, and plain Java JARs work too. If your setup is unusual, ask in Discord before you build and we will tell you what to expect.",
+  },
+  {
+    question: "Will obfuscation break my plugin?",
+    answer:
+      "Compatibility is the point. Nebula renames with hierarchy awareness and keeps platform rules intact, so plugin entry points and reflection-sensitive paths still line up. Always test the protected build on a staging server before shipping — that is good practice for any release.",
+  },
+  {
+    question: "Can I try Nebula before buying?",
+    answer:
+      "Yes. The live demo section includes original and Nebula-protected sample JARs you can download, run and inspect for yourself.",
+  },
+  {
+    question: "How do I pay?",
+    answer:
+      "Payments are handled through the Nebula Discord. Join the server, choose Standard or Annual, and the team will take care of checkout and license setup.",
+  },
+  {
+    question: "What do I get after payment?",
+    answer:
+      "Dashboard access and the complete protection pipeline, including code virtualization. Your update window starts at purchase and lasts for the length of your plan.",
+  },
+  {
+    question: "Do I need to change how I deploy?",
+    answer:
+      "No. The output is a standard JAR. Deploy it the same way you deploy your current build, with no launcher changes or extra steps.",
+  },
+  {
+    question: "Is VM protection included in both plans?",
+    answer:
+      "Yes. Both plans run the complete pipeline. There are no feature gates or premium-only passes — the only difference between Standard and Annual is how long updates last.",
+  },
+  {
+    question: "How do I get support?",
+    answer:
+      "The Nebula Discord is the fastest route. Use it for pre-sale questions, documentation, and build troubleshooting with the team.",
+  },
+];
+---
+
+<section class="section faq" id="faq">
+  <div class="section-head animate-fade-slide-up">
+    <span class="eyebrow">FAQ</span>
+    <h2 class="section-title">Questions, answered plainly.</h2>
+    <p class="section-sub">
+      The things people ask before their first protected build. Still unsure?
+      The Discord is one click away.
+    </p>
+  </div>
+
+  <div class="faq-list">
+    {
+      faqs.map((faq, index) => (
+        <details class="faq-item" open={index === 0}>
+          <summary>
+            <span class="faq-question">{faq.question}</span>
+            <span class="faq-icon">
+              <Icon name="chevron-down" size={16} />
+            </span>
+          </summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))
+    }
+  </div>
+
+  <div class="faq-contact">
+    <span class="faq-contact-icon">
+      <Icon name="chat" size={18} />
+    </span>
+    <p>
+      Still have a question that is not here?
+      <a
+        href={String(discordUrl)}
+        target="_blank"
+        rel="noopener noreferrer">Ask the team on Discord</a
+      >
+    </p>
+  </div>
+</section>
+
+<style>
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    background: rgba(17, 12, 28, 0.58);
+    transition:
+      border-color 0.18s ease,
+      background 0.18s ease;
+  }
+
+  .faq-item:hover {
+    border-color: var(--border-soft);
+  }
+
+  .faq-item[open] {
+    border-color: rgba(167, 139, 250, 0.24);
+    background: rgba(22, 15, 37, 0.72);
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 18px 20px;
+    color: var(--text-primary);
+    font-size: 13.5px;
+    font-weight: 500;
+    line-height: 1.45;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.025);
+    color: var(--text-muted);
+    transition:
+      transform 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+    color: var(--accent-bright);
+    border-color: rgba(167, 139, 250, 0.28);
+  }
+
+  .faq-item > p {
+    max-width: 94%;
+    padding: 0 58px 20px 20px;
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.75;
+  }
+
+  .faq-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    margin-top: 28px;
+    color: var(--text-muted);
+    font-size: 11.5px;
+  }
+
+  .faq-contact-icon {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--border-soft);
+    background: rgba(255, 255, 255, 0.025);
+    color: var(--accent-soft);
+  }
+
+  .faq-contact a {
+    color: var(--accent-bright);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: rgba(196, 181, 253, 0.3);
+    text-underline-offset: 3px;
+    transition: color 0.16s ease;
+  }
+
+  .faq-contact a:hover {
+    color: var(--accent-pink);
+  }
+
+  @media (max-width: 600px) {
+    .faq-item summary {
+      padding: 16px;
+      font-size: 12.5px;
+    }
+
+    .faq-item > p {
+      padding: 0 16px 18px;
+      max-width: 100%;
+    }
+
+    .faq-contact {
+      flex-direction: column;
+      text-align: center;
+      gap: 8px;
+    }
+  }
+</style>

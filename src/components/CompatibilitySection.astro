@@ -1,0 +1,367 @@
+---
+import Icon from "@icons/Icon.astro";
+
+const platforms = [
+  "Paper",
+  "Spigot",
+  "Purpur",
+  "BungeeCord",
+  "Velocity",
+  "Fabric",
+  "Forge",
+  "Plain Java JARs",
+];
+
+const stats = [
+  { icon: "layers", target: "25", suffix: "K", label: "Lines protected" },
+  { icon: "shield", target: "19", suffix: "", label: "Protection layers" },
+  { icon: "gauge", target: "99", suffix: "/100", label: "Security rating" },
+];
+---
+
+<section class="section compat" id="compatibility">
+  <div class="compat-grid">
+    <div class="compat-copy">
+      <span class="eyebrow">Built for your stack</span>
+      <h2 class="section-title">Drop-in where you already build.</h2>
+      <p class="section-sub compat-sub">
+        Nebula is built around compatibility, not against it. Hierarchy-aware
+        renaming and platform-aware rules keep your plugin behaving like it did
+        before — just with far less to read.
+      </p>
+
+      <div class="platform-grid">
+        {
+          platforms.map((platform) => (
+            <span class="platform">
+              <Icon name="check" size={13} />
+              {platform}
+            </span>
+          ))
+        }
+      </div>
+
+      <div class="compat-note">
+        <span class="compat-note-icon">
+          <Icon name="package" size={18} />
+        </span>
+        <div>
+          <h3>Your output stays a standard JAR.</h3>
+          <p>
+            Deploy it the same way you always have. No launcher changes, no
+            extra runtime steps, no extra ceremony.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <aside class="stats-card">
+      <div class="stats-head">
+        <span class="stats-label">At a glance</span>
+        <span class="stats-live">
+          <span></span>
+          full pipeline
+        </span>
+      </div>
+
+      <div class="stat-list">
+        {
+          stats.map((stat) => (
+            <div class="stat-row">
+              <span class="stat-icon">
+                <Icon name={stat.icon} size={18} />
+              </span>
+              <div class="stat-copy">
+                <h3
+                  class="stat-number"
+                  data-count-target={stat.target}
+                  data-suffix={stat.suffix}
+                >{stat.target}{stat.suffix}</h3>
+                <p>{stat.label}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="stats-foot">
+        <span class="foot-line"></span>
+        <p>Every Nebula plan runs the complete pipeline.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .compat {
+    padding-top: 76px;
+  }
+
+  .compat-grid {
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    align-items: center;
+    gap: 64px;
+  }
+
+  .compat-copy {
+    max-width: 580px;
+  }
+
+  .compat-sub {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .platform-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 30px;
+  }
+
+  .platform {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 9px;
+    border: 1px solid var(--border-soft);
+    background: rgba(255, 255, 255, 0.025);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    transition:
+      color 0.16s ease,
+      border-color 0.16s ease,
+      background 0.16s ease;
+  }
+
+  .platform:hover {
+    color: var(--text-primary);
+    border-color: var(--border-mid);
+    background: var(--bg-hover);
+  }
+
+  .platform :global(svg) {
+    color: var(--green);
+    opacity: 0.9;
+  }
+
+  .compat-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    margin-top: 28px;
+    padding: 16px 18px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    background: rgba(19, 13, 31, 0.55);
+  }
+
+  .compat-note-icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    background: var(--accent-dim);
+    color: var(--accent-bright);
+  }
+
+  .compat-note h3 {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .compat-note p {
+    margin-top: 3px;
+    color: var(--text-muted);
+    font-size: 11.5px;
+    line-height: 1.6;
+  }
+
+  .stats-card {
+    position: relative;
+    overflow: hidden;
+    padding: 26px;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-soft);
+    background:
+      radial-gradient(
+        ellipse at 100% 0%,
+        rgba(139, 92, 246, 0.16),
+        transparent 55%
+      ),
+      linear-gradient(165deg, rgba(29, 19, 49, 0.85), rgba(11, 8, 20, 0.94));
+    box-shadow:
+      var(--shadow-raised),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .stats-card::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 1px solid rgba(167, 139, 250, 0.1);
+    box-shadow:
+      0 0 0 40px rgba(167, 139, 250, 0.025),
+      0 0 0 80px rgba(167, 139, 250, 0.018);
+    pointer-events: none;
+  }
+
+  .stats-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .stats-label {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .stats-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.05em;
+  }
+
+  .stats-live span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.1);
+    animation: live-pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes live-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .stat-list {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+  }
+
+  .stat-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .stat-row:last-child {
+    border-bottom: 0;
+    padding-bottom: 6px;
+  }
+
+  .stat-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 11px;
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--accent-bright);
+  }
+
+  .stat-copy h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3vw, 2.15rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    background: linear-gradient(120deg, #f5f1ff 10%, #c4b5fd 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .stat-copy p {
+    margin-top: 5px;
+    color: var(--text-muted);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .stats-foot {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .foot-line {
+    width: 26px;
+    height: 1px;
+    flex-shrink: 0;
+    background: var(--accent-soft);
+    opacity: 0.6;
+  }
+
+  .stats-foot p {
+    color: var(--text-muted);
+    font-size: 10.5px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .compat-grid {
+      grid-template-columns: 1fr;
+      gap: 44px;
+    }
+
+    .compat-copy {
+      max-width: 680px;
+    }
+
+    .stats-card {
+      max-width: 560px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .stats-card {
+      padding: 20px;
+    }
+  }
+</style>
+
+<script>
+  import { applyCountUpAnimation } from "@scripts/ui/counter";
+
+  applyCountUpAnimation();
+</script>

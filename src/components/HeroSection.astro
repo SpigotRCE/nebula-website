@@ -1,0 +1,493 @@
+---
+import { discordUrl } from "@constants/urls";
+import Icon from "@icons/Icon.astro";
+
+const products = [
+  {
+    icon: "server",
+    title: "Minecraft plugins",
+    text: "Paper, Spigot, BungeeCord & Velocity",
+    price: "From $35",
+    href: "#pricing",
+  },
+  {
+    icon: "code",
+    title: "Java applications",
+    text: "Any JAR, any stack, any size",
+    price: "From $35",
+    href: "#pricing",
+  },
+  {
+    icon: "cpu",
+    title: "VM protection",
+    text: "Selected code through a VM layer",
+    price: "Included",
+    href: "#features",
+  },
+  {
+    icon: "download",
+    title: "Sample builds",
+    text: "Test real protected output first",
+    price: "Free",
+    href: "#samples",
+  },
+];
+
+const trust = [
+  {
+    icon: "zap",
+    title: "Instant builds",
+    text: "Upload, configure, download",
+  },
+  {
+    icon: "layers",
+    title: "Layered defense",
+    text: "19 techniques in one pass",
+  },
+  {
+    icon: "server",
+    title: "Platform ready",
+    text: "Paper, Velocity & Bungee",
+  },
+  {
+    icon: "chat",
+    title: "Human support",
+    text: "A direct line on Discord",
+  },
+];
+---
+
+<section class="hero" id="home">
+  <div class="hero-orbit" aria-hidden="true">
+    <span class="orbit orbit-1"></span>
+    <span class="orbit orbit-2"></span>
+    <span class="orbit orbit-3"></span>
+    <span class="orbit-core"></span>
+  </div>
+
+  <div class="hero-inner">
+    <span class="hero-badge animate-fade-slide-down">
+      <Icon name="shield" size={13} />
+      Java bytecode protection
+    </span>
+
+    <h1 class="hero-title animate-fade-slide-down">
+      Ship your plugin.<br />
+      <span class="gradient-text">Keep your code.</span>
+    </h1>
+
+    <p class="hero-sub animate-fade-slide-up">
+      Nebula hardens Java bytecode with layered obfuscation, string encryption,
+      control-flow flattening and VM protection — so your Minecraft plugins and
+      applications stay yours.
+    </p>
+
+    <div class="hero-actions animate-fade-slide-up">
+      <a
+        class="btn btn-primary btn-lg"
+        href={String(discordUrl)}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Get started
+        <Icon name="arrow-right" size={16} />
+      </a>
+      <a class="btn btn-ghost btn-lg" href="#demo">See it in action</a>
+    </div>
+
+    <p class="hero-note animate-fade-slide-up">
+      <Icon name="check" size={14} />
+      Works with Paper, Velocity, BungeeCord and plain Java JARs
+    </p>
+
+    <div class="product-grid">
+      {
+        products.map((product) => (
+          <a class="product-card" href={product.href}>
+            <span class="product-top">
+              <span class="product-icon">
+                <Icon name={product.icon} size={19} />
+              </span>
+              <Icon name="arrow-right" size={15} />
+            </span>
+            <h2>{product.title}</h2>
+            <p>{product.text}</p>
+            <span class="product-price">{product.price}</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="trust-bar">
+      {
+        trust.map((item) => (
+          <div class="trust-item">
+            <span class="trust-icon">
+              <Icon name={item.icon} size={17} />
+            </span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    padding: calc(var(--nav-height) + 76px) 0 72px;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    border-radius: 999px;
+    border: 1px solid rgba(167, 139, 250, 0.24);
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--accent-bright);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-badge :global(svg) {
+    color: var(--accent-pink);
+  }
+
+  .hero-title {
+    max-width: 1040px;
+    margin-top: 26px;
+    font-family: var(--font-display);
+    font-size: clamp(2.85rem, 7.6vw, 5.4rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    color: var(--text-primary);
+    text-wrap: balance;
+  }
+
+  .hero-title .gradient-text {
+    filter: drop-shadow(0 0 34px rgba(168, 85, 247, 0.28));
+  }
+
+  .hero-sub {
+    max-width: 680px;
+    margin-top: 24px;
+    color: var(--text-secondary);
+    font-size: clamp(1rem, 2.1vw, 1.14rem);
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .hero-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 18px;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  .hero-note :global(svg) {
+    color: var(--green);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    width: 100%;
+    margin-top: 54px;
+    text-align: left;
+  }
+
+  .product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 176px;
+    padding: 20px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    background: linear-gradient(
+      160deg,
+      rgba(35, 23, 58, 0.66),
+      rgba(13, 9, 23, 0.8)
+    );
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(12px);
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+
+  .product-card::after {
+    content: "";
+    position: absolute;
+    top: -70px;
+    right: -70px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(168, 85, 247, 0.22),
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.24s ease;
+    pointer-events: none;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(167, 139, 250, 0.36);
+    box-shadow: 0 24px 54px -26px rgba(139, 92, 246, 0.55);
+  }
+
+  .product-card:hover::after {
+    opacity: 1;
+  }
+
+  .product-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-muted);
+  }
+
+  .product-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    border: 1px solid rgba(167, 139, 250, 0.22);
+    background: var(--accent-dim);
+    color: var(--accent-bright);
+  }
+
+  .product-card h2 {
+    margin-top: 18px;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .product-card p {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+
+  .product-price {
+    margin-top: auto;
+    padding-top: 16px;
+    color: var(--accent-bright);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .trust-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    width: 100%;
+    margin-top: 16px;
+    padding: 18px 22px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    background: rgba(19, 13, 31, 0.55);
+    backdrop-filter: blur(12px);
+    text-align: left;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 4px 8px;
+  }
+
+  .trust-icon {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(167, 139, 250, 0.14);
+    color: var(--accent-soft);
+  }
+
+  .trust-item h3 {
+    color: var(--text-primary);
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  .trust-item p {
+    margin-top: 1px;
+    color: var(--text-muted);
+    font-size: 10.5px;
+    line-height: 1.4;
+  }
+
+  /* Decorative orbital rings */
+  .hero-orbit {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    width: min(1000px, 120vw);
+    aspect-ratio: 1;
+    transform: translateX(-50%);
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .orbit {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(167, 139, 250, 0.08);
+    border-radius: 50%;
+  }
+
+  .orbit-1 {
+    animation: orbit-spin 90s linear infinite;
+  }
+
+  .orbit-2 {
+    inset: 14%;
+    border-color: rgba(232, 121, 249, 0.07);
+    animation: orbit-spin 70s linear infinite reverse;
+  }
+
+  .orbit-3 {
+    inset: 30%;
+    border-color: rgba(167, 139, 250, 0.06);
+    animation: orbit-spin 50s linear infinite;
+  }
+
+  .orbit-1::before,
+  .orbit-2::before,
+  .orbit-3::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+    box-shadow: 0 0 16px rgba(196, 181, 253, 0.9);
+  }
+
+  .orbit-core {
+    position: absolute;
+    inset: 38%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(139, 92, 246, 0.2),
+      transparent 68%
+    );
+    filter: blur(30px);
+  }
+
+  @keyframes orbit-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trust-bar {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .hero-orbit {
+      top: 190px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      padding-top: calc(var(--nav-height) + 52px);
+    }
+
+    .hero-inner {
+      padding: 0 20px;
+    }
+
+    .product-grid {
+      grid-template-columns: 1fr;
+      margin-top: 40px;
+    }
+
+    .product-card {
+      min-height: 0;
+    }
+
+    .trust-bar {
+      grid-template-columns: 1fr;
+      padding: 16px;
+    }
+
+    .hero-actions {
+      width: 100%;
+    }
+
+    .hero-actions .btn {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .hero-orbit {
+      top: 140px;
+      opacity: 0.4;
+    }
+  }
+</style>

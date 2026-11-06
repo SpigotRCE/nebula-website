@@ -11,6 +11,7 @@
       "@components/*": ["src/components/*"],
       "@icons/*": ["src/components/icons/*"],
       "@constants/*": ["src/constants/*"],
+      "@styles/*": ["src/styles/*"],
       "@public/*": ["public/*"],
     },
     "types": ["@types/prismjs"]
